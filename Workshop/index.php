@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
-  require_once('../BusinessLogic/Employee2.php');
+  require_once('../BusinessLogic/Employee.php');
+
+  session_start();
+  $_SESSION['username'] = 'admin';
+
   if(!empty($_POST)){
     $result = addNewEmployee($_POST);
   }
@@ -45,7 +49,11 @@
 
   <?php foreach ($employees as $employee): ?>
     <div class="">
-      <span><?php echo $employee['employeeNumber'] ?></span>
+      <span>
+        <a href="employeeDetail.php?number=<?php echo $employee['employeeNumber'] ?>">
+          <?php echo $employee['employeeNumber'] ?>
+        </a>
+      </span>
       <span><?php echo $employee['firstName'] ?></span>
       <span><?php echo $employee['lastName'] ?></span>
     </div>
