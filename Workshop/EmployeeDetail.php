@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <?php
-  session_start();
-  echo $_SESSION['username'];
+  // session_start();
+  // echo $_SESSION['username'];
 
   require_once '../BusinessLogic/Employee.php';
   $number = 0;
-  if(isset($_GET['number'])){
-    $number = (int) $_GET['number'];
+  if(isset($_POST['number'])){
+    $number = (int) $_POST['number'];
   }
 
   // $number = (isset($_GET['number']))? (int) $_GET['number']: 0;
@@ -21,17 +21,23 @@
 </head>
 <body>
     <?php if (!empty($result)): ?>
-      <div class="">
-        <span>Name:</span>
-        <span><?php echo $result[0]['firstName'].' '.$result[0]['lastName'] ?></span>
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <?php echo $result[0]['firstName'].' '.$result[0]['lastName'] ?>
+          </div>
+          <div class="panel-body">
+            <div class="">
+              <span>Email:</span>
+              <span><?php echo $result[0]['email'] ?></span>
+            </div>
+            <div class="">
+              <span>Job Title:</span>
+              <span><?php echo $result[0]['jobTitle'] ?></span>
+          </div>
+        </div>
       </div>
-      <div class="">
-        <span>Email:</span>
-        <span><?php echo $result[0]['email'] ?></span>
-      </div>
-      <div class="">
-        <span>Job Title:</span>
-        <span><?php echo $result[0]['jobTitle'] ?></span>
+
     <?php endif; ?>
 </body>
 </html>
